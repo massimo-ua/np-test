@@ -30,7 +30,13 @@ $(function() {
 							}
 							$("#messages").html(html);
 				  	}
-				  }
+				  },
+				  error: function(XMLHttpRequest, textStatus, errorThrown) { 
+				  		var html =
+							'<p class="error">Result: Failure</p>'
+							+'<p class="error">Error: ' + errorThrown + '</p>';
+						$("#messages").html(html);
+				  }       
 				});
 			}
 		}

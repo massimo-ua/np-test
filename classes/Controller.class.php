@@ -32,13 +32,17 @@ class Controller {
 				$time_end = microtime();
 				$et = round($time_end - $time_start, 5);
 				$model = new Model();
-				$model->save_log($ip, $sda, $eda, $res, $et);
-				$this->result = [
-					"success" => true,
-					"res" => $res,
-					"input" => $sda . '-' . $eda,
-					"et" => $et
-				];
+				try{
+					$model->save_log($ip, $sda, $eda, $res, $et);
+					$this->result = [
+						"success" => true,
+						"res" => $res,
+						"input" => $sda . '-' . $eda,
+						"et" => $et
+					];
+				} catch (Exception $e) {
+					array_push($this->errors, $e->getMessage());
+				}
 			}
 		} else {
 			switch(true) {

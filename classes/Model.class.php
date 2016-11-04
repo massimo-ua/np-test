@@ -38,7 +38,7 @@ class Model {
 			$this->getdb()->commit();
 		}
 		catch(\PDOException $e){
-			$pdo->rollBack();
+			$this->getdb()->rollBack();
 			throw new Exception($e->getMessage());
 		}
 
